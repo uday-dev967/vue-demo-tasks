@@ -15,6 +15,6 @@ import DropdownWithTabIndex from '@/components/tasks/DropdownWithTabIndex.vue';
   display: grid;
   overflow: hidden;
   place-content: center;
-  background-color: $background_2;
+  background-color: $background-14;
 }
 </style>
