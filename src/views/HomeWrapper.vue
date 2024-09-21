@@ -1,8 +1,10 @@
-<script setup></script>
+<script setup>
+import DropdownWithTabIndex from '@/components/tasks/DropdownWithTabIndex.vue';
+</script>
 
 <template>
   <div class="home-page-wrapper">
-    {{ $t('homeText') }}
+    <DropdownWithTabIndex />
   </div>
 </template>
 
@@ -12,5 +14,7 @@
   width: 100%;
   display: grid;
   overflow: hidden;
+  place-content: center;
+  background-color: $background_2;
 }
 </style>
