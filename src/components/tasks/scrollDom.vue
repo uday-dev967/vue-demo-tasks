@@ -48,10 +48,10 @@ function getElementDimensions(elementId) {
       <div class="data-list-wrapper">
         <div v-for="elementData in elementsData" :key="elementData.key" class="data-wrapper">
           <div class="head">{{ elementData.key }}</div>
-          <dvi class="data">height: <span>{{elementData.height}}</span></dvi>
-          <dvi class="data">width: <span>{{elementData.width}}</span></dvi>
-          <dvi class="data">overflowX: <span>{{elementData.overflowX}}</span></dvi>
-          <dvi class="data">overflowY: <span>{{elementData.overflowY}}</span></dvi>
+          <div class="data">height: <span>{{elementData.height}}</span></div>
+          <div class="data">width: <span>{{elementData.width}}</span></div>
+          <div class="data">overflowX: <span>{{elementData.overflowX}}</span></div>
+          <div class="data">overflowY: <span>{{elementData.overflowY}}</span></div>
         </div>
       </div>
     </div>
