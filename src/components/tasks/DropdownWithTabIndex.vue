@@ -197,7 +197,7 @@ function checkDropdownOutsideClick({ target }) {
     align-items: center;
     padding: 0.75rem 1.25rem;
     border-radius: 12.5rem;
-    background-color: $background_1;
+    background-color: $background-13;
     color: $color-white;
 
     &-title {
@@ -230,8 +230,8 @@ function checkDropdownOutsideClick({ target }) {
   }
 
   .search-wrapper {
-    border-bottom: 0.0156rem dotted rgba($border_1, 0.3);
-    color: $color_1;
+    border-bottom: 0.0156rem dotted rgba($border-5, 0.3);
+    color: $color-15;
     padding: 0.3125rem 0 0.75rem 0;
     margin-right: 1.25rem;
     display: flex;
@@ -239,7 +239,7 @@ function checkDropdownOutsideClick({ target }) {
     gap: 2rem;
 
     .search-text {
-      color: $color_1;
+      color: $color-15;
       font-family: $roboto-font;
       font-size: 1.125rem;
       background: transparent;
@@ -247,7 +247,7 @@ function checkDropdownOutsideClick({ target }) {
     }
 
     input {
-      color: $color_1;
+      color: $color-15;
       font-family: $roboto-font;
       font-size: 1.125rem;
       background: transparent;
@@ -294,7 +294,7 @@ function checkDropdownOutsideClick({ target }) {
         text-transform: ca;
       }
       &:not(:last-child) {
-        border-bottom: 0.0156rem solid rgba($border_1, 0.1);
+        border-bottom: 0.0156rem solid rgba($border-5, 0.1);
       }
     }
   }
