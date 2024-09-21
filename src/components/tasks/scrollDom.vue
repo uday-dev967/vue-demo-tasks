@@ -71,6 +71,7 @@ function getElementDimensions(elementId) {
   gap: 1rem;
   width: 100%;
   padding: 1rem;
+  // height: 100%;
   .left-container {
     height: 100%;
     width: 100%;
@@ -79,6 +80,8 @@ function getElementDimensions(elementId) {
     width: 100%;
     border: 2px solid $color-11;
     padding: 1rem;
+    // height: 100%;
+    // overflow: auto;
     .item {
       width: 100%;
       height: 100px;
