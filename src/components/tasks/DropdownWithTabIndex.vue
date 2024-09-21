@@ -39,7 +39,6 @@ const searchResult = computed(() => {
 });
 
 function checkDropdownOutsideClick({ target }) {
-  console.log(1);
   if (!tasksDropdownContainer.value.contains(target)) {
     isOpen.value = false;
   }
@@ -308,6 +307,8 @@ function checkDropdownOutsideClick({ target }) {
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 0.25rem;
+    margin-right: 1.25rem;
 
     svg {
       width: 3.125rem;
