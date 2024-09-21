@@ -2,7 +2,10 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useCommonUtilities } from '@/composables/useCommonUtilities';
 
-const Tasks = [{ name: 'Containing Dom Height', value: '/containing-dom-height' }];
+const Tasks = [
+  { name: 'Containing Dom Height', value: '/containing-dom-height' },
+  { name: 'Containing Img Width Height', value: '/image-contain' },
+];
 const isOpen = ref(false);
 const showSearchInput = ref(false);
 const searchVal = ref('');
