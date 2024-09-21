@@ -1,18 +1,20 @@
 <script setup>
-import { reactive, computed, ref, onMounted } from 'vue';
+import { reactive, computed, ref, onMounted, nextTick } from 'vue';
 const itemsList = ref([])
 let elementsData = ref([])
 
 function onAddItemClick() {
   itemsList.value = [...itemsList.value,`ITEM ${itemsList.value.length+1}`]
-  const parentElement = getElementDimensions('containing-dom-page-wrapper');
-  const scrollParentElement = getElementDimensions('scroll-dom-wrapper');
-  const bodyElement = getElementDimensions('body');
-  const appElement = getElementDimensions('app');
-  const scrollElement = getElementDimensions('scroll-container');
-  // elementsData.value = [bodyElement, appElement, parentElement, scrollParentElement, scrollElement, ]
-  // elementsData.value = [parentElement, scrollParentElement, scrollElement, ]
-  elementsData.value = [ scrollParentElement, scrollElement ]
+  nextTick(() => {
+    const parentElement = getElementDimensions('containing-dom-page-wrapper');
+    const scrollParentElement = getElementDimensions('scroll-dom-wrapper');
+    const bodyElement = getElementDimensions('body');
+    const appElement = getElementDimensions('app');
+    const scrollElement = getElementDimensions('scroll-container');
+    // elementsData.value = [bodyElement, appElement, parentElement, scrollParentElement, scrollElement, ]
+    // elementsData.value = [parentElement, scrollParentElement, scrollElement, ]
+    elementsData.value = [ scrollParentElement, scrollElement ]
+  })
 }
 
 function getElementDimensions(elementId) {
@@ -41,7 +43,7 @@ function getElementDimensions(elementId) {
         {{ item }}
       </div>
     </div>
-    <div>
+    <div class="right-container">
       <div class="primary-button" @click="onAddItemClick">add item</div>
       <div class="data-list-wrapper">
         <div v-for="elementData in elementsData" :key="elementData.key" class="data-wrapper">
@@ -85,6 +87,7 @@ function getElementDimensions(elementId) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    margin-top: 1rem;
     .data-wrapper {
       display: flex;
       flex-direction: column;
