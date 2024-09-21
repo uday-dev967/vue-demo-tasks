@@ -11,9 +11,10 @@ function onAddItemClick() {
     const bodyElement = getElementDimensions('body');
     const appElement = getElementDimensions('app');
     const scrollElement = getElementDimensions('scroll-container');
-    // elementsData.value = [bodyElement, appElement, parentElement, scrollParentElement, scrollElement, ]
+    const leftContainerElement = getElementDimensions('left-container');
+    elementsData.value = [bodyElement, appElement, parentElement, scrollParentElement, leftContainerElement, scrollElement, ]
     // elementsData.value = [parentElement, scrollParentElement, scrollElement, ]
-    elementsData.value = [ scrollParentElement, scrollElement ]
+    // elementsData.value = [ scrollParentElement, scrollElement ]
   })
 }
 
@@ -38,11 +39,13 @@ function getElementDimensions(elementId) {
 
 <template>
   <div class="scroll-dom-wrapper" id="scroll-dom-wrapper">
-    <div class="scroll-container" id="scroll-container">
-      <div v-for="item in itemsList" :key="item" class="item">
-        {{ item }}
+    <!-- <div class="left-container" id="left-container"> -->
+      <div class="scroll-container" id="scroll-container">
+        <div v-for="item in itemsList" :key="item" class="item">
+          {{ item }}
+        </div>
       </div>
-    </div>
+    <!-- </div> -->
     <div class="right-container">
       <div class="primary-button" @click="onAddItemClick">add item</div>
       <div class="data-list-wrapper">
@@ -55,6 +58,9 @@ function getElementDimensions(elementId) {
         </div>
       </div>
     </div>
+    <!-- <div class="extra-block">
+      EXTRA BLOCK
+    </div> -->
   </div>
 </template>
 
@@ -65,6 +71,10 @@ function getElementDimensions(elementId) {
   gap: 1rem;
   width: 100%;
   padding: 1rem;
+  .left-container {
+    height: 100%;
+    width: 100%;
+  }
   .scroll-container {
     width: 100%;
     border: 2px solid $color-11;
@@ -112,17 +122,17 @@ function getElementDimensions(elementId) {
       }
     }
   }
-  &.scroll-container-1 {
-    display: flex;
-    height: 100%;
+  .extra-block {
+    grid-column: 1/-1;
     width: 100%;
-  }
-  &.scroll-container-2 {
-    height: 100vh;
-    width: 100%
-  }
-  &.scroll-container-3 {
-    height: 50rem;
+    border: 2px solid $color-11;
+    padding: 1rem;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
   }
 }
 </style>

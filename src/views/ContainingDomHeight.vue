@@ -14,27 +14,27 @@ const homeElement = document.getElementById('containing-dom-page-wrapper')
 
 <style scoped lang="scss">
 .containing-dom-page-wrapper {
-  height: 100%;
+  // height: 100%;
   width: 100%;
-  &.container-1 {
-    display: grid;
-    overflow: hidden;
-  }
-  &.container-2 {
-    display: grid;
-  }
-  &.container-3 {
-    overflow: hidden;
-  }
-  &.container-4 {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  &.container-5 {
-    display: flex;
-    flex-direction: column;
-  }
+  // &.container-1 {
+  //   display: grid;
+  //   overflow: hidden;
+  // }
+  // &.container-2 {
+  //   display: grid;
+  // }
+  // &.container-3 {
+  //   overflow: hidden;
+  // }
+  // &.container-4 {
+  //   display: flex;
+  //   flex-direction: column;
+  //   overflow: hidden;
+  // }
+  // &.container-5 {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
   
 }
 </style>
