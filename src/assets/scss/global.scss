@@ -116,3 +116,34 @@ body {
   pointer-events: none;
   opacity: 0.5;
 }
+
+.primary-button {
+  display: flex;
+  padding: .75rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+  border-radius: .875rem;
+  background: $background-3;
+  color: $color-3;
+  font-size: .875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.secondary-button {
+  display: flex;
+  padding: .5rem .75rem;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+  color: $color-1;
+  font-size: .875rem;
+  font-weight: 500;
+  border-radius: .5rem;
+  border: 1px solid $border-1;
+  background: $background-1;
+  text-transform: capitalize;
+  cursor: pointer;
+}
