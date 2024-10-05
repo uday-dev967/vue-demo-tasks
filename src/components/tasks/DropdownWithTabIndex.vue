@@ -7,54 +7,60 @@ const Tasks = [
   { name: 'Containing Img Width Height', value: '/image-contain' },
 ];
 const isOpen = ref(false);
-const showSearchInput = ref(false);
 const searchVal = ref('');
 const { goToRoute } = useCommonUtilities();
 let tasksDropdownContainer = ref(null);
 let tasksDropdown = ref(null);
 
 const handleBlur = (e) => {
-  isOpen.value = false;
-  // checkDropdownOutsideClick(e)
+  // isOpen.value = false;
+  checkDropdownOutsideClick(e);
 };
 const handleItemClick = (e, val) => {
-  isOpen.value = false;
-  goToRoute(val);
+  console.log(e.target)
+  // isOpen.value = false;
+  // goToRoute(val);
 };
-
 
 const searchResult = computed(() => {
   const searchTerms = searchVal.value.toLowerCase().split(' ');
-  return showSearchInput.value && searchVal.value
+  return  searchVal.value
     ? Tasks.filter((task) =>
-        searchTerms.some((term) => task.name.toLowerCase().includes(term) || task.value.toLowerCase().includes(term))
+        searchTerms.every((term) => task.name.toLowerCase().includes(term) || task.value.toLowerCase().includes(term))
       )
     : Tasks;
 });
 
-function checkDropdownOutsideClick({ target }) {
-  console.log("contain",tasksDropdownContainer.value.contains(target))
-  console.log("target", target)
-  if (!tasksDropdownContainer.value.contains(target)) {
-    isOpen.value = false;
-  }
-}
-
-// function checkDropdownOutsideClick({ relatedTarget }) {
-//   console.log("equal node",tasksDropdown.value.isEqualNode(relatedTarget))
-//   console.log("contain",tasksDropdownContainer.value.contains(relatedTarget))
-//   console.log("target", relatedTarget)
-//   if (tasksDropdownContainer.value.contains(relatedTarget) || tasksDropdown.value.isEqualNode(relatedTarget)) {
-//     return
+// function checkDropdownOutsideClick({ target }) {
+//   console.log('contain', tasksDropdownContainer.value.contains(target));
+//   console.log('target', target);
+//   if (!tasksDropdownContainer.value.contains(target)) {
+//     isOpen.value = false;
 //   }
-//   isOpen.value = false;
 // }
+
+function checkDropdownOutsideClick({ relatedTarget }) {
+  console.log('equal node', tasksDropdown.value?.isEqualNode(relatedTarget));
+  console.log('contain', tasksDropdown.value?.contains(relatedTarget));
+  console.log('target', relatedTarget);
+
+  if (tasksDropdown.value.contains(relatedTarget) || tasksDropdown.value.isEqualNode(relatedTarget)) {
+    return;
+  }
+  isOpen.value = false;
+}
 </script>
 
 <template>
   <div ref="tasksDropdown" class="dropdown-component-wrapper" :class="{ 'is-open': isOpen }" tabindex="-1" @blur="handleBlur">
     <div class="header" @click.stop="isOpen = !isOpen">
       <div class="header-title">Frontend Demo Tasks</div>
+      <!-- <input
+        :style="{ position: 'absolute', top: '0', left: 0, bottom: 0, borderRadius: '100px', padding: '10px' }"
+        type="text"
+        @click.stop
+        @blur="handleBlur"
+      /> -->
       <div class="toggle-icon iwpar">
         <svg
           width="20px"
@@ -159,6 +165,7 @@ function checkDropdownOutsideClick({ target }) {
     border-radius: 12.5rem;
     background-color: $background-13;
     color: $color-white;
+    position: relative;
 
     &-title {
       text-align: center;
