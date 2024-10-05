@@ -11,26 +11,17 @@ const showSearchInput = ref(false);
 const searchVal = ref('');
 const { goToRoute } = useCommonUtilities();
 let tasksDropdownContainer = ref(null);
+let tasksDropdown = ref(null);
 
 const handleBlur = (e) => {
-  if (!showSearchInput.value) {
-    isOpen.value = false;
-  }
-};
-const handleItemClick = (val) => {
   isOpen.value = false;
-  handleSearchToggle(false);
+  // checkDropdownOutsideClick(e)
+};
+const handleItemClick = (e, val) => {
+  isOpen.value = false;
   goToRoute(val);
 };
 
-const handleSearchToggle = (val) => {
-  showSearchInput.value = val;
-  if (val) {
-    document.addEventListener('click', checkDropdownOutsideClick);
-  } else {
-    document.removeEventListener('click', checkDropdownOutsideClick);
-  }
-};
 
 const searchResult = computed(() => {
   const searchTerms = searchVal.value.toLowerCase().split(' ');
@@ -42,15 +33,27 @@ const searchResult = computed(() => {
 });
 
 function checkDropdownOutsideClick({ target }) {
+  console.log("contain",tasksDropdownContainer.value.contains(target))
+  console.log("target", target)
   if (!tasksDropdownContainer.value.contains(target)) {
     isOpen.value = false;
   }
 }
+
+// function checkDropdownOutsideClick({ relatedTarget }) {
+//   console.log("equal node",tasksDropdown.value.isEqualNode(relatedTarget))
+//   console.log("contain",tasksDropdownContainer.value.contains(relatedTarget))
+//   console.log("target", relatedTarget)
+//   if (tasksDropdownContainer.value.contains(relatedTarget) || tasksDropdown.value.isEqualNode(relatedTarget)) {
+//     return
+//   }
+//   isOpen.value = false;
+// }
 </script>
 
 <template>
-  <div class="dropdown-component-wrapper" :class="{ 'is-open': isOpen }" tabindex="-1" @blur="handleBlur">
-    <div class="header" @click.stop="isOpen = true">
+  <div ref="tasksDropdown" class="dropdown-component-wrapper" :class="{ 'is-open': isOpen }" tabindex="-1" @blur="handleBlur">
+    <div class="header" @click.stop="isOpen = !isOpen">
       <div class="header-title">Frontend Demo Tasks</div>
       <div class="toggle-icon iwpar">
         <svg
@@ -91,57 +94,11 @@ function checkDropdownOutsideClick({ target }) {
     </div>
     <div class="dropdown-items-container" ref="tasksDropdownContainer">
       <div class="search-wrapper">
-        <template v-if="showSearchInput">
-          <input class="strip-input-default-styles" type="text" placeholder="Search task..." v-model="searchVal" />
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            @click.stop="handleSearchToggle(false)"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <g clip-path="url(#clip0_429_11083)">
-                <path
-                  d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
-                  stroke="#292929"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_429_11083"><rect width="24" height="24" fill="white"></rect></clipPath>
-              </defs>
-            </g>
-          </svg>
-        </template>
-
-        <template v-else>
-          <div class="search-text">Search task...</div>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            @click.stop="handleSearchToggle(true)"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="m3.99 16.854-1.314 3.504a.75.75 0 0 0 .966.965l3.503-1.314a3 3 0 0 0 1.068-.687L18.36 9.175s-.354-1.061-1.414-2.122c-1.06-1.06-2.122-1.414-2.122-1.414L4.677 15.786a3 3 0 0 0-.687 1.068zm12.249-12.63 1.383-1.383c.248-.248.579-.406.925-.348.487.08 1.232.322 1.934 1.025.703.703.945 1.447 1.025 1.934.058.346-.1.677-.348.925L19.774 7.76s-.353-1.06-1.414-2.12c-1.06-1.062-2.121-1.415-2.121-1.415z"
-                fill="#000000"
-              ></path>
-            </g>
-          </svg>
-        </template>
+        <input class="strip-input-default-styles" type="text" placeholder="Search task..." v-model="searchVal" @blur="handleBlur"/>
       </div>
 
       <div class="item-list" v-if="searchResult?.length">
-        <div class="items" v-for="task in searchResult" :key="task.value" @click.stop="handleItemClick(task.value)">
+        <div class="items" v-for="task in searchResult" :key="task.value" @click.stop="handleItemClick($event,task.value)">
           <div class="task">{{ task.name }}</div>
           <svg
             fill="#000000"
