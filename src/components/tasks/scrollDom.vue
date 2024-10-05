@@ -12,7 +12,14 @@ function onAddItemClick() {
     const appElement = getElementDimensions('app');
     const scrollElement = getElementDimensions('scroll-container');
     const leftContainerElement = getElementDimensions('left-container');
-    elementsData.value = [bodyElement, appElement, parentElement, scrollParentElement, leftContainerElement, scrollElement, ]
+
+    bodyElement['background']=''
+    appElement['background']='background-light-pink'
+    parentElement['background']='background-light-blue'
+    scrollParentElement['background']='background-light-gray'
+    leftContainerElement['background']='background-light-purple'
+    scrollElement['background']='background-light-orange'
+    elementsData.value = [bodyElement, appElement, parentElement, scrollParentElement, scrollElement, leftContainerElement, ]
     // elementsData.value = [parentElement, scrollParentElement, scrollElement, ]
     // elementsData.value = [ scrollParentElement, scrollElement ]
   })
@@ -49,7 +56,7 @@ function getElementDimensions(elementId) {
     <div class="right-container">
       <div class="primary-button" @click="onAddItemClick">add item</div>
       <div class="data-list-wrapper">
-        <div v-for="elementData in elementsData" :key="elementData.key" class="data-wrapper">
+        <div v-for="elementData in elementsData" :key="elementData.key" :class="['data-wrapper', elementData.background]" >
           <div class="head">{{ elementData.key }}</div>
           <div class="data">height: <span>{{elementData.height}}</span></div>
           <div class="data">width: <span>{{elementData.width}}</span></div>
@@ -71,15 +78,19 @@ function getElementDimensions(elementId) {
   gap: 1rem;
   width: 100%;
   padding: 1rem;
+  background: $background-7 !important;
   // height: 100%;
   .left-container {
     height: 100%;
     width: 100%;
+    padding: 1rem;
+    background: $background-15 !important;
   }
   .scroll-container {
     width: 100%;
     border: 2px solid $color-11;
     padding: 1rem;
+    background: $background-16 !important;
     // height: 100%;
     // overflow: auto;
     .item {
@@ -110,6 +121,7 @@ function getElementDimensions(elementId) {
       border-radius: 1rem;
       box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.02);
       padding: 0.75rem;
+      border: 1px solid $border-4;
       .data {
         font-size: 1rem;
         span {
@@ -137,5 +149,12 @@ function getElementDimensions(elementId) {
     align-items: center;
     font-size: 3rem;
   }
+}
+</style>
+
+<style lang="scss">
+#app {
+  background: $background-12 !important;
+  padding: 1rem;
 }
 </style>

@@ -15,6 +15,8 @@ const homeElement = document.getElementById('containing-dom-page-wrapper')
 <style scoped lang="scss">
 .containing-dom-page-wrapper {
   // height: 100%;
+  padding: 1rem;
   width: 100%;
+  background: $background-8 !important;
 }
 </style>
