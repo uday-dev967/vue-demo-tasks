@@ -13,13 +13,13 @@ let tasksDropdownContainer = ref(null);
 let tasksDropdown = ref(null);
 
 const handleBlur = (e) => {
-  // isOpen.value = false;
-  checkDropdownOutsideClick(e);
+  isOpen.value = false;
+  // checkDropdownOutsideClick(e);
 };
 const handleItemClick = (e, val) => {
   console.log(e.target)
-  // isOpen.value = false;
-  // goToRoute(val);
+  isOpen.value = false;
+  goToRoute(val);
 };
 
 const searchResult = computed(() => {
@@ -44,7 +44,7 @@ function checkDropdownOutsideClick({ relatedTarget }) {
   console.log('contain', tasksDropdown.value?.contains(relatedTarget));
   console.log('target', relatedTarget);
 
-  if (tasksDropdown.value.contains(relatedTarget) || tasksDropdown.value.isEqualNode(relatedTarget)) {
+  if (tasksDropdown.value?.contains(relatedTarget) || tasksDropdown.value.isEqualNode(relatedTarget)) {
     return;
   }
   isOpen.value = false;
@@ -166,6 +166,7 @@ function checkDropdownOutsideClick({ relatedTarget }) {
     background-color: $background-13;
     color: $color-white;
     position: relative;
+    cursor: pointer;
 
     &-title {
       text-align: center;
