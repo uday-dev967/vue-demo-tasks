@@ -13,8 +13,8 @@ let tasksDropdownContainer = ref(null);
 let tasksDropdown = ref(null);
 
 const handleBlur = (e) => {
-  isOpen.value = false;
-  // checkDropdownOutsideClick(e);
+  // isOpen.value = false;
+  checkDropdownOutsideClick(e);
 };
 const handleItemClick = (e, val) => {
   console.log(e.target)
@@ -44,7 +44,7 @@ function checkDropdownOutsideClick({ relatedTarget }) {
   console.log('contain', tasksDropdown.value?.contains(relatedTarget));
   console.log('target', relatedTarget);
 
-  if (tasksDropdown.value?.contains(relatedTarget) || tasksDropdown.value.isEqualNode(relatedTarget)) {
+  if (tasksDropdown.value?.contains(relatedTarget) || tasksDropdown.value?.isEqualNode(relatedTarget)) {
     return;
   }
   isOpen.value = false;
@@ -56,7 +56,7 @@ function checkDropdownOutsideClick({ relatedTarget }) {
     <div class="header" @click.stop="isOpen = !isOpen">
       <div class="header-title">Frontend Demo Tasks</div>
       <!-- <input
-        :style="{ position: 'absolute', top: '0', left: 0, bottom: 0, borderRadius: '100px', padding: '10px' }"
+        :style="{ position: 'absolute', top: '0', left: 0, bottom: 0, borderRadius: '100px', padding: '10px', width: '70%' }"
         type="text"
         @click.stop
         @blur="handleBlur"
