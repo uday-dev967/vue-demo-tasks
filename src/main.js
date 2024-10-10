@@ -1,4 +1,4 @@
-import './assets/main.scss';
+// import './assets/main.scss';
 
 import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
@@ -44,6 +44,7 @@ let language = getQueryParams('lang');
 if (!language) {
   language = 'en';
 }
+i18n.global.locale.value = language;
 
 function isMac() {
   if (navigator.userAgentData) {

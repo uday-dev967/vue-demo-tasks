@@ -54,7 +54,7 @@ function checkDropdownOutsideClick({ relatedTarget }) {
 <template>
   <div ref="tasksDropdown" class="dropdown-component-wrapper" :class="{ 'is-open': isOpen }" tabindex="-1" @blur="handleBlur">
     <div class="header" @click.stop="isOpen = !isOpen">
-      <div class="header-title">Frontend Demo Tasks</div>
+      <div class="header-title">{{ $t("frontEndDemoTask") }}</div>
       <!-- <input
         :style="{ position: 'absolute', top: '0', left: 0, bottom: 0, borderRadius: '100px', padding: '10px', width: '70%' }"
         type="text"
